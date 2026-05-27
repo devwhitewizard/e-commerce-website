@@ -1,0 +1,40 @@
+/* ─────────────────────────────────────────────
+   BREADCRUMBS — 5-Tier Responsive
+───────────────────────────────────────────── */
+
+.breadcrum {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5e5e5e;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 60px 140px;
+    text-transform: capitalize;
+    flex-wrap: wrap;
+}
+
+/* ─── 1536px+ ─── */
+@media (min-width: 1536px) {
+    .breadcrum { margin: 70px 180px; font-size: 18px; }
+}
+
+/* ─── 1024px – 1279px ─── */
+@media (max-width: 1279px) {
+    .breadcrum { margin: 40px 80px; font-size: 15px; }
+}
+
+/* ─── 768px – 1023px ─── */
+@media (max-width: 1023px) {
+    .breadcrum { margin: 30px 40px; font-size: 14px; }
+}
+
+/* ─── 481px – 767px ─── */
+@media (max-width: 767px) {
+    .breadcrum { margin: 20px 20px; font-size: 12px; gap: 6px; }
+}
+
+/* ─── < 480px ─── */
+@media (max-width: 480px) {
+    .breadcrum { margin: 16px 14px; font-size: 11px; gap: 4px; }
+}

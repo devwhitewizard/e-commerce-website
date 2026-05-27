@@ -1,0 +1,203 @@
+.cartitems {
+    margin: 100px 170px;
+}
+
+.cartitems hr {
+    height: 3px;
+    background: #e2e2e2;
+    border: 0;
+}
+
+.cartitems-format-main {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 75px;
+    padding: 20px 0px;
+    color: #454545;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.cartitems-format {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.carticon-product-icon {
+    height: 62px;
+}
+
+.cartitems-remove-icon {
+    width: 15px;
+    margin: 0px 40px;
+    cursor: pointer;
+}
+
+.cartitems-quantity {
+    width: 64px;
+    height: 50px;
+    border: 2px solid #ebebeb;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartitems-down {
+    display: flex;
+    margin: 100px 0px;
+}
+
+.cartitems-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+    gap: 40px;
+}
+
+.cartitems-total h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.cartitems-total-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+}
+
+.cartitems-total button {
+    width: 262px;
+    height: 58px;
+    outline: none;
+    border: none;
+    background: #ff4141;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cartitems-total button:hover {
+    background: #e63636;
+}
+
+.cartitems-promocode {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cartitems-promocode p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.cartitems-promobox {
+    width: 504px;
+    padding-left: 20px;
+    height: 58px;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+}
+
+.cartitems-promobox input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    flex: 1;
+    height: 100%;
+}
+
+.cartitems-promobox button {
+    width: 170px;
+    height: 58px;
+    font-size: 16px;
+    background: #1c1c1c;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.3s ease;
+}
+
+.cartitems-promobox button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 1280px) {
+    .cartitems {
+        margin: 60px 80px;
+    }
+    .cartitems-format-main {
+        gap: 30px;
+        font-size: 15px;
+    }
+    .cartitems-total {
+        margin-right: 100px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cartitems {
+        margin: 40px 40px;
+    }
+    .cartitems-format-main {
+        gap: 15px;
+    }
+    .cartitems-total {
+        margin-right: 50px;
+    }
+    .cartitems-promobox {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .cartitems-format-main {
+        display: none;
+    }
+    .cartitems-format {
+        grid-template-columns: 0.5fr 2fr 0.5fr 0.5fr; /* Simplified for mobile */
+        gap: 10px;
+        font-size: 13px;
+        padding: 15px 0;
+    }
+    .cartitems-format p:nth-child(3), 
+    .cartitems-format p:nth-child(5) {
+        display: none; /* Hide unit price and category on tablet/mobile */
+    }
+    .cartitems-remove-icon {
+        margin: 0;
+    }
+    .cartitems-down {
+        flex-direction: column;
+        margin: 40px 0;
+        gap: 50px;
+    }
+    .cartitems-total {
+        margin-right: 0;
+    }
+    .cartitems-total button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .cartitems {
+        margin: 40px 20px;
+    }
+    .cartitems-format {
+        grid-template-columns: 0.8fr 2fr 0.5fr;
+    }
+    .cartitems-quantity {
+        display: none; /* Hide quantity box on very small screens, just show total? No, keep it or simplify */
+    }
+    .carticon-product-icon {
+        height: 50px;
+    }
+}

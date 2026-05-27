@@ -1,0 +1,134 @@
+/* ─────────────────────────────────────────────
+   FOOTER — 5-Tier Responsive
+───────────────────────────────────────────── */
+
+/* ─── Base (Desktop 1280+) ─── */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding-top: 100px;
+    background: #fff;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo img { width: 44px; height: 44px; }
+
+.footer-logo p {
+    color: #383838;
+    font-size: 46px;
+    font-weight: 700;
+}
+
+.footer-links {
+    display: flex;
+    list-style: none;
+    gap: 50px;
+    color: #252525;
+    font-size: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links li {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.footer-links li:hover { color: #ff4141; }
+
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social-icon {
+    padding: 10px;
+    padding-bottom: 6px;
+    background: #fbfbfb;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+.footer-social-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #ff4141;
+}
+.footer-social-icon img { width: 25px; height: 25px; }
+
+.footer-copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    color: #252525;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.footer-copyright hr {
+    width: 80%;
+    border: none;
+    border-radius: 10px;
+    height: 3px;
+    background: #c7c7c7;
+}
+
+/* ─── 1536px+ ─── */
+@media (min-width: 1536px) {
+    .footer { padding-top: 130px; gap: 60px; }
+    .footer-logo p { font-size: 54px; }
+    .footer-links { font-size: 22px; gap: 60px; }
+    .footer-social-icon img { width: 30px; height: 30px; }
+    .footer-copyright { font-size: 20px; }
+}
+
+/* ─── 1024px – 1279px ─── */
+@media (max-width: 1279px) {
+    .footer { gap: 40px; padding-top: 80px; }
+    .footer-logo p { font-size: 38px; }
+    .footer-links { font-size: 18px; gap: 34px; }
+    .footer-copyright { font-size: 16px; }
+}
+
+/* ─── 768px – 1023px (Tablets) ─── */
+@media (max-width: 1023px) {
+    .footer { gap: 30px; padding-top: 60px; }
+    .footer-logo p { font-size: 30px; }
+    .footer-links { font-size: 16px; gap: 24px; }
+    .footer-copyright { font-size: 15px; }
+    .footer-social-icon img { width: 22px; height: 22px; }
+}
+
+/* ─── 481px – 767px (Phones) ─── */
+@media (max-width: 767px) {
+    .footer { gap: 24px; padding-top: 50px; }
+    .footer-logo p { font-size: 26px; }
+    .footer-links { font-size: 14px; gap: 16px; }
+    .footer-socials { gap: 14px; }
+    .footer-social-icon { padding: 8px; }
+    .footer-social-icon img { width: 20px; height: 20px; }
+    .footer-copyright { font-size: 13px; gap: 16px; }
+    .footer-copyright hr { width: 90%; }
+}
+
+/* ─── < 480px ─── */
+@media (max-width: 480px) {
+    .footer { gap: 18px; padding-top: 36px; }
+    .footer-logo p { display: none; }
+    .footer-logo img { width: 36px; height: 36px; }
+    .footer-links { font-size: 13px; gap: 12px; }
+    .footer-socials { gap: 10px; }
+    .footer-copyright { font-size: 12px; }
+}

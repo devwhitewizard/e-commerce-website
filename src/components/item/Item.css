@@ -1,0 +1,88 @@
+/* ─────────────────────────────────────────────
+   ITEM CARD — 5-Tier Responsive
+───────────────────────────────────────────── */
+
+/* ─── Base (Desktop 1280+) ─── */
+.item {
+    width: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.item p {
+    margin: 6px 0;
+    font-size: 15px;
+    color: #3d3d3d;
+}
+
+.item-prices {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.item-prices-new {
+    color: #ff4141;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.item-prices-old {
+    color: #7a7a7a;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: line-through;
+}
+
+.item:hover {
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+}
+
+/* ─── 1536px+ (Large Screens) ─── */
+@media (min-width: 1536px) {
+    .item img { height: 360px; }
+    .item p { font-size: 16px; }
+    .item-prices-new { font-size: 22px; }
+    .item-prices-old { font-size: 18px; }
+}
+
+/* ─── 1024px – 1279px (Small Laptops) ─── */
+@media (max-width: 1279px) {
+    .item img { height: 260px; }
+    .item p { font-size: 14px; }
+    .item-prices-new { font-size: 16px; }
+    .item-prices-old { font-size: 14px; }
+}
+
+/* ─── 768px – 1023px (Tablets) ─── */
+@media (max-width: 1023px) {
+    .item img { height: 220px; }
+    .item p { font-size: 13px; }
+    .item-prices-new { font-size: 15px; }
+    .item-prices-old { font-size: 13px; }
+}
+
+/* ─── 481px – 767px (Phones) ─── */
+@media (max-width: 767px) {
+    .item img { height: 200px; }
+    .item p { font-size: 13px; }
+    .item-prices-new { font-size: 14px; }
+    .item-prices-old { font-size: 12px; }
+}
+
+/* ─── < 480px (Small Phones) ─── */
+@media (max-width: 480px) {
+    .item img { height: 180px; }
+    .item p { font-size: 12px; }
+    .item-prices { gap: 6px; }
+    .item-prices-new { font-size: 14px; }
+    .item-prices-old { font-size: 12px; }
+}
