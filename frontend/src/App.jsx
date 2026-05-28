@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/navbar/Navbar'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Shop from './pages/Shop'
 import ShopCategory from './pages/ShopCategory'
 import Product from './pages/Product'
@@ -21,7 +21,6 @@ function App() {
     <>
     <div>
       <ShopContextProvider>
-      <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={<Shop />} />
@@ -37,7 +36,6 @@ function App() {
 
       </Routes>
       <Footer />
-      </Router>
       </ShopContextProvider>
       </div>
     </>
