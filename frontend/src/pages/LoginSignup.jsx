@@ -17,51 +17,53 @@ const LoginSignup = () => {
 
     const login = async () => {
         console.log("Login executed", formData);
-        let responseData;
-        await fetch("http://localhost:4000/api/users/login", {
-            method: "POST",
-            headers: {
-                "Accept": "application/form-data",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            responseData = data;
-        })
+        try {
+            const response = await fetch("http://localhost:4000/api/users/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+            const responseData = await response.json();
 
-        if(responseData.success) {
-            localStorage.setItem("auth-token", responseData.token);
-            window.location.replace("/");
-        }
-        else {
-            alert(responseData.error || "Login failed");
+            if (responseData.success) {
+                localStorage.setItem("auth-token", responseData.token);
+                localStorage.setItem("user-name", responseData.name);
+                alert("Login Successful! Welcome back.");
+                window.location.replace("/");
+            } else {
+                alert(responseData.error || "Invalid credentials");
+            }
+        } catch (error) {
+            console.error("Login Error:", error);
+            alert("Could not connect to server. Please ensure the backend is running on port 4000.");
         }
     }
 
     const signup = async () => {
         console.log("Signup executed", formData);
-        let responseData;
-        await fetch("http://localhost:4000/api/users/signup", {
-            method: "POST",
-            headers: {
-                "Accept": "application/form-data",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            responseData = data;
-        })
+        try {
+            const response = await fetch("http://localhost:4000/api/users/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+            const responseData = await response.json();
 
-        if(responseData.success) {
-            localStorage.setItem("auth-token", responseData.token);
-            window.location.replace("/");
-        }
-        else {
-            alert(responseData.error || "Signup failed");
+            if (responseData.success) {
+                localStorage.setItem("auth-token", responseData.token);
+                localStorage.setItem("user-name", responseData.name);
+                alert("Signup Successful! Welcome to Shopper.");
+                window.location.replace("/");
+            } else {
+                alert(responseData.error || "Signup failed");
+            }
+        } catch (error) {
+            console.error("Signup Error:", error);
+            alert("Could not connect to server. Please ensure the backend is running on port 4000.");
         }
     }
 

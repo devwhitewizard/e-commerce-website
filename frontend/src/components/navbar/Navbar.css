@@ -100,6 +100,18 @@
     align-items: center;
 }
 
+.nav-user-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-user-container span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
 .nav-login-cart button {
     width: 130px;
     height: 46px;

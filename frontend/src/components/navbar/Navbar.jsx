@@ -10,7 +10,7 @@ import { ShopContext } from '../../context/ShopContext'
 const Navbar = () => {
 
     const [menu, setMenu] = useState("shop")
-    const { getTotalCartItems } = useContext(ShopContext);
+    const { getTotalCartItems, clearCart } = useContext(ShopContext);
     const menuRef = useRef();
 
     const dropdown_toggle = (e) => {
@@ -33,7 +33,10 @@ const Navbar = () => {
         </ul>
         <div className="nav-login-cart">
             {localStorage.getItem('auth-token')? 
-            <button onClick={()=>{localStorage.removeItem('auth-token'); clearCart(); window.location.replace('/login')}}>Logout</button> :
+            <div className='nav-user-container'>
+               <span>Welcome, {localStorage.getItem('user-name')||'User'}</span>
+               <button onClick={()=>{localStorage.removeItem('auth-token'); localStorage.removeItem('user-name'); clearCart(); window.location.replace('/login')}}>Logout</button>
+            </div> :
             <Link to='/login'><button>Login</button></Link>
             }
             <Link to='/cart'><img src={cart_icon} alt="" /></Link>

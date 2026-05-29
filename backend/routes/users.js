@@ -29,7 +29,7 @@ router.post("/signup", async (req, res) => {
     await user.save();
 
     const token = jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET);
-    res.json({ success: true, token });
+    res.json({ success: true, token, name: user.name });
   } catch (err) {
     res.status(500).json({ error: "Signup failed" });
   }
@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
     if (!isMatch) return res.status(400).json({ success: false, error: "Invalid credentials" });
 
     const token = jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET);
-    res.json({ success: true, token });
+    res.json({ success: true, token, name: user.name });
   } catch (err) {
     res.status(500).json({ error: "Login failed" });
   }
