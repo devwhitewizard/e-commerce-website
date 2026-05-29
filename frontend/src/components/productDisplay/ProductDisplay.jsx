@@ -8,6 +8,10 @@ export const ProductDisplay = (props) => {
     const { product } = props;
     const { addToCart } = useContext(ShopContext);
 
+    if (!product) {
+        return null; // Or a loading spinner
+    }
+
     return (
         <div className='productdisplay'>
             <div className="productdisplay-left">

@@ -6,6 +6,10 @@ const Breadcrum = (props) => {
     const {product} = props
 
     
+    if (!product) {
+        return null;
+    }
+    
     return (
         <div>
             <p className='breadcrum'>

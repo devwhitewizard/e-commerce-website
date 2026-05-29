@@ -2,30 +2,8 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
-// Reuse User model (import carefully to avoid re-registration)
-let User;
-try {
-  User = mongoose.model("User");
-} catch {
-  const userSchema = new mongoose.Schema({
-    cartData: { type: Object, default: {} },
-  });
-  User = mongoose.model("User", userSchema);
-}
-
-// Middleware: verify JWT token
-const jwt = require("jsonwebtoken");
-const fetchUser = (req, res, next) => {
-  const token = req.header("auth-token");
-  if (!token) return res.status(401).json({ error: "Access denied. No token." });
-  try {
-    const data = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = data.user;
-    next();
-  } catch {
-    res.status(401).json({ error: "Invalid token" });
-  }
-};
+const User = require("../models/User");
+const fetchUser = require("../middleware/auth");
 
 // POST /add — add item to cart
 router.post("/add", fetchUser, async (req, res) => {

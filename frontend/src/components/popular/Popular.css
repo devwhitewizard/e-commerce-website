@@ -13,17 +13,19 @@
 }
 
 .popular h1 {
-    font-size: 50px;
-    font-weight: 600;
-    color: #171717;
+    font-size: 42px;
+    font-weight: 700;
+    color: #1f2937;
+    letter-spacing: -1px;
 }
 
 .popular hr {
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
-    background: #252525;
+    width: 120px;
+    height: 4px;
+    border-radius: 4px;
+    background: #ff4141;
     border: none;
+    margin-top: -5px;
 }
 
 .popular-item {

@@ -1,46 +1,29 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-
-// User Schema
-const userSchema = new mongoose.Schema({
-  name: { type: String },
-  email: { type: String, unique: true, required: true },
-  password: { type: String, required: true },
-  cartData: { type: Object, default: {} },
-  date: { type: Date, default: Date.now },
-});
-
-const User = mongoose.model("User", userSchema);
-
-// Middleware: verify JWT token
-const fetchUser = (req, res, next) => {
-  const token = req.header("auth-token");
-  if (!token) return res.status(401).json({ error: "Access denied. No token." });
-  try {
-    const data = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = data.user;
-    next();
-  } catch {
-    res.status(401).json({ error: "Invalid token" });
-  }
-};
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
+const fetchUser = require("../middleware/auth");
 
 // POST /signup
 router.post("/signup", async (req, res) => {
   try {
-    const exists = await User.findOne({ email: req.body.email });
+    const { username, email, password } = req.body;
+    let exists = await User.findOne({ email });
     if (exists) return res.status(400).json({ error: "User already exists" });
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     // Initialize empty cart
     let cartData = {};
     for (let i = 0; i < 300; i++) cartData[i] = 0;
 
     const user = new User({
-      name: req.body.username,
-      email: req.body.email,
-      password: req.body.password, // NOTE: hash passwords in production!
+      name: username,
+      email: email,
+      password: hashedPassword,
       cartData,
     });
     await user.save();
@@ -55,16 +38,32 @@ router.post("/signup", async (req, res) => {
 // POST /login
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (!user) return res.status(400).json({ error: "Invalid credentials" });
-    if (user.password !== req.body.password)
-      return res.status(400).json({ error: "Invalid credentials" });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ success: false, error: "Invalid credentials" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ success: false, error: "Invalid credentials" });
 
     const token = jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET);
     res.json({ success: true, token });
   } catch (err) {
     res.status(500).json({ error: "Login failed" });
   }
+});
+
+// POST /forgotpassword (basic implementation)
+router.post("/forgotpassword", async (req, res) => {
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) return res.status(404).json({ error: "User not found" });
+
+        // Logic for token generation/email sending would go here
+        res.json({ success: true, message: "If this email was registered, a password reset link has been sent (Mocked)." });
+    } catch (err) {
+        res.status(500).json({ error: "Internal server error" });
+    }
 });
 
 module.exports = router;
