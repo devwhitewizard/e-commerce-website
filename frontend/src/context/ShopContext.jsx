@@ -16,13 +16,16 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    // Try to fetch from backend; if it fails or returns empty, keep the static data
+    // Fetch from backend and PREPEND to static data so both are always visible.
+    // Static data is the fallback — it is always shown.
     fetch("http://localhost:4000/api/products")
       .then((response) => response.json())
       .then((data) => {
         if (Array.isArray(data) && data.length > 0) {
-          setAll_product(data);
+          // Merge: backend products come first, then static ones
+          setAll_product([...data, ...all_product_local]);
         }
+        // If backend returns empty or fails, static data stays (initial state)
       })
       .catch(() => {}); // silently keep static data on error
 
